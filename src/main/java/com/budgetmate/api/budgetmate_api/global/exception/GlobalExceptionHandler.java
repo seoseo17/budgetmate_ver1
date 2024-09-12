@@ -1,6 +1,6 @@
-package com.skeleton.api.skeleton_api.global.exception;
+package com.budgetmate.api.budgetmate_api.global.exception;
 
-import com.skeleton.api.skeleton_api.global.error.ErrorResponse;
+import com.budgetmate.api.budgetmate_api.global.error.ErrorResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;

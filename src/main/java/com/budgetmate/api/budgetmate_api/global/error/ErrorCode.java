@@ -1,4 +1,4 @@
-package com.skeleton.api.skeleton_api.global.error;
+package com.budgetmate.api.budgetmate_api.global.error;
 
 import lombok.Getter;
 import org.springframework.http.HttpStatus;

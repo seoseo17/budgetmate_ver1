@@ -1,6 +1,6 @@
-package com.skeleton.api.skeleton_api.global.exception;
+package com.budgetmate.api.budgetmate_api.global.exception;
 
-import com.skeleton.api.skeleton_api.global.error.ErrorCode;
+import com.budgetmate.api.budgetmate_api.global.error.ErrorCode;
 import lombok.Getter;
 
 @Getter
