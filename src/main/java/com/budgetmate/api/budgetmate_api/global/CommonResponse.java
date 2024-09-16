@@ -11,7 +11,7 @@ public class CommonResponse<T> {
 
 
     public static <T> CommonResponse<T> ok(T data) {
-        return ok(null, data);
+        return ok( data);
     }
 
     public static <T> CommonResponse<T> ok(String message, T data) {
