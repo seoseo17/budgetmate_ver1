@@ -1,16 +1,23 @@
 package com.budgetmate.api.budgetmate_api.domain.user.entity;
 
+import com.budgetmate.api.budgetmate_api.domain.budget.entity.Budget;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Fetch;
 
 @Builder
 @Setter
@@ -32,6 +39,7 @@ public class User {
 
     @Column(nullable = false)
     private String nickname;
-    
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.LAZY)
+    private List<Budget> budgets = new ArrayList<>();
 }
