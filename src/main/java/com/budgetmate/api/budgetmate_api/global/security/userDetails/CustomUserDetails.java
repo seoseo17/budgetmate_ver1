@@ -1,4 +1,4 @@
-package com.budgetmate.api.budgetmate_api.global.security;
+package com.budgetmate.api.budgetmate_api.global.security.userDetails;
 
 import com.budgetmate.api.budgetmate_api.domain.user.entity.User;
 import java.util.ArrayList;

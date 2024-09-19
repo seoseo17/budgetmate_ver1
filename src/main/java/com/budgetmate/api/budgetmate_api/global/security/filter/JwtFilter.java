@@ -6,7 +6,7 @@ import static com.budgetmate.api.budgetmate_api.global.error.ErrorCode.COMMON_SY
 import com.budgetmate.api.budgetmate_api.domain.user.entity.User;
 import com.budgetmate.api.budgetmate_api.global.error.ErrorCode;
 import com.budgetmate.api.budgetmate_api.global.exception.JwtAuthenticationException;
-import com.budgetmate.api.budgetmate_api.global.security.CustomUserDetails;
+import com.budgetmate.api.budgetmate_api.global.security.userDetails.CustomUserDetails;
 import com.budgetmate.api.budgetmate_api.global.security.util.TokenManager;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

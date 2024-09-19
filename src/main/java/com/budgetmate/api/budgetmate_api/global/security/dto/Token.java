@@ -1,4 +1,4 @@
-package com.budgetmate.api.budgetmate_api.global.security;
+package com.budgetmate.api.budgetmate_api.global.security.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

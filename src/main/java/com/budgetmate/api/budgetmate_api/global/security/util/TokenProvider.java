@@ -1,13 +1,8 @@
 package com.budgetmate.api.budgetmate_api.global.security.util;
 
 
-import static io.jsonwebtoken.SignatureAlgorithm.HS256;
-import static org.springframework.security.config.Elements.JWT;
-
 import com.budgetmate.api.budgetmate_api.global.error.ErrorCode;
 import com.budgetmate.api.budgetmate_api.global.exception.JwtAuthenticationException;
-import com.budgetmate.api.budgetmate_api.global.security.Token;
-import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.UnsupportedJwtException;
@@ -74,6 +69,10 @@ public class TokenProvider {
                     : accessExpiration)))
             .signWith(secretKey)
             .compact();
+    }
+
+    public Date getExpiration(String token){
+        return Jwts.parser().verifyWith(secretKey).build().parseSignedClaims(token).getPayload().getExpiration();
     }
 
 }

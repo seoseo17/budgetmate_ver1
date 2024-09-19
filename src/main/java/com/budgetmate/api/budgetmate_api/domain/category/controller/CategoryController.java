@@ -2,7 +2,7 @@ package com.budgetmate.api.budgetmate_api.domain.category.controller;
 
 import com.budgetmate.api.budgetmate_api.domain.category.service.CategoryService;
 import com.budgetmate.api.budgetmate_api.global.CommonResponse;
-import com.budgetmate.api.budgetmate_api.global.security.CustomUserDetails;
+import com.budgetmate.api.budgetmate_api.global.security.userDetails.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

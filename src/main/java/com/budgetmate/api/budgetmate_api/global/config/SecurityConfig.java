@@ -4,6 +4,8 @@ import com.budgetmate.api.budgetmate_api.global.security.authorization.SecurityA
 import com.budgetmate.api.budgetmate_api.global.security.authorization.SecurityAuthenticationEntryPoint;
 import com.budgetmate.api.budgetmate_api.global.security.filter.JwtFilter;
 import com.budgetmate.api.budgetmate_api.global.security.filter.LoginFilter;
+import com.budgetmate.api.budgetmate_api.global.security.logout.LogoutTokenHandler;
+import com.budgetmate.api.budgetmate_api.global.security.logout.LogoutTokenSuccessHandler;
 import com.budgetmate.api.budgetmate_api.global.security.util.TokenManager;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +24,8 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.logout.LogoutHandler;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -36,7 +40,7 @@ public class SecurityConfig {
 
     private final String[] PERMIT_URL_ARRAY = {
         "/v3/api-docs/**", "/swagger-ui/**", "/v3/api-docs", "/swagger-ui.html",
-        "/error", "/user/signup", "/user/login"
+        "/error", "/user/signup","/user/login",
     };
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
@@ -49,7 +53,10 @@ public class SecurityConfig {
             .sessionManagement(sessionManagement-> sessionManagement
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .logout(logout -> logout
-                .logoutUrl("/user/logout"))
+                .logoutUrl("/user/logout")
+                .addLogoutHandler(createLogoutHandler())
+                .logoutSuccessHandler(createLogoutSuccessHandler())
+            )
             .exceptionHandling(exceptionHandling -> exceptionHandling //예외처리 설정
                 .authenticationEntryPoint(authenticationEntryPoint()) //인증되지 않는 사용자가 보호된 리소스 접근 시
                 .accessDeniedHandler(accessDeniedHandler()) // 접근 거부 시
@@ -77,5 +84,10 @@ public class SecurityConfig {
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration)
         throws Exception {
         return configuration.getAuthenticationManager();
+    }
+
+    private LogoutHandler createLogoutHandler(){ return new LogoutTokenHandler(objectMapper,tokenManager);}
+
+    private LogoutSuccessHandler createLogoutSuccessHandler(){return new LogoutTokenSuccessHandler(objectMapper);
     }
 }

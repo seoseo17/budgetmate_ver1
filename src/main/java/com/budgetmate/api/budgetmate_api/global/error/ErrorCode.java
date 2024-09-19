@@ -11,6 +11,7 @@ public enum ErrorCode {
     //공통
     INVALID_INPUT_VALUE(BAD_REQUEST, "유효하지 않은 입력 값입니다."),
     COMMON_SYSTEM_ERROR(INTERNAL_SERVER_ERROR, "시스템 오류입니다."),
+    REDIS_SERVER_ERROR(BAD_REQUEST, "Redis 서버에서 오류가 발생했습니다."),
 
     //User
     USER_NOT_FOUND(HttpStatus.BAD_REQUEST, "사용자를 찾을 수 없습니다."),
