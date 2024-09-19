@@ -14,4 +14,5 @@ public interface BudgetRepository extends JpaRepository<Budget,Long> {
 
     boolean existsByYearAndMonth(int year, int month);
 
+
 }

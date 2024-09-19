@@ -41,4 +41,8 @@ public class CategoryBudget {
         @JoinColumn(name = "category_id",nullable = false)
         private Category category;
 
+        public void  updateAmount(int amount){
+                this.amount += amount;
+        }
+
 }

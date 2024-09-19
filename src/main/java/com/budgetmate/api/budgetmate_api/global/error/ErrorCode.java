@@ -33,7 +33,12 @@ public enum ErrorCode {
     BUDGET_NOT_FOUND(HttpStatus.BAD_REQUEST, "존재하지 않는 예산 목록입니다."),
 
     //Category
-    CATEGORY_NOT_FOUND(HttpStatus.BAD_REQUEST, "존재하지 않는 카테고리입니다.")
+    CATEGORY_NOT_FOUND(HttpStatus.BAD_REQUEST, "존재하지 않는 카테고리입니다."),
+
+    //CategoryBudget
+
+    CATEGORYBUDGET_NOT_FOUND(HttpStatus.BAD_REQUEST, "존재하지 않는 카테고리별 예산 목록입니다.")
+
     ;
 
     private final HttpStatus httpStatus;
