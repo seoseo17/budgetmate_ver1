@@ -4,6 +4,8 @@ import com.budgetmate.api.budgetmate_api.domain.user.dto.signup.UserRequestDto;
 import com.budgetmate.api.budgetmate_api.domain.user.entity.User;
 import com.budgetmate.api.budgetmate_api.domain.user.service.UserService;
 import com.budgetmate.api.budgetmate_api.global.CommonResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -25,5 +27,11 @@ public class UserController {
         userService.signup(dto);
 
         return new ResponseEntity<>(CommonResponse.ok("회원가입이 되었습니다.",null), HttpStatus.CREATED);
+    }
+
+    @PostMapping("/reissue")
+    public ResponseEntity<?> reissue(HttpServletRequest request, HttpServletResponse response){
+
+        return new ResponseEntity<>(CommonResponse.ok("토큰이 재발행 되었습니다.",userService.reissue(request, response)), HttpStatus.CREATED);
     }
 }
