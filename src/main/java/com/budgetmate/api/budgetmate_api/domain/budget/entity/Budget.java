@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Builder.Default;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -40,12 +41,19 @@ public class Budget {
     @Column(nullable = false)
     private int month;
 
-    private int totalAmount;
+    private int totalAmount=0;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "budget", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "budget", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<CategoryBudget> categoryBudgets = new ArrayList<>();
+
+
+    public void updateTotalAmount(int totalAmount){
+        this.totalAmount = totalAmount;
+    }
+
+
 }

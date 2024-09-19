@@ -1,6 +1,7 @@
 package com.budgetmate.api.budgetmate_api.domain.user.service;
 
 import static com.budgetmate.api.budgetmate_api.global.error.ErrorCode.EMAIL_ALREADY_EXISTS;
+import static com.budgetmate.api.budgetmate_api.global.error.ErrorCode.USER_NOT_FOUND;
 
 import com.budgetmate.api.budgetmate_api.domain.user.dto.signup.UserRequestDto;
 import com.budgetmate.api.budgetmate_api.domain.user.entity.User;
@@ -42,6 +43,11 @@ public class UserService {
         userRepository.save(user);
         log.info("[sign up] user_id:{}",user.getId());
     }
+
+    public User findById(Long id){
+        return userRepository.findById(id).orElseThrow(()-> new CustomException(USER_NOT_FOUND));
+    }
+
     public Token reissue(HttpServletRequest request, HttpServletResponse response) {
         //get refresh token
         Cookie[] cookies = request.getCookies();
