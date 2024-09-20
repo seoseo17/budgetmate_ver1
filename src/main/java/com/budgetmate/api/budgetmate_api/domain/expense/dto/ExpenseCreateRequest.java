@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 import lombok.Getter;
@@ -14,9 +13,9 @@ import lombok.Setter;
 @Getter
 public class ExpenseCreateRequest {
 
-    @Schema(description = "오늘 지", example = "30000")
+    @Schema(description = "지출 금액", example = "30000")
     @NotNull
-    @Min(value = 50, message = "예산 금액은 50원 이상이어야 합니다.")
+    @Min(value = 1, message = "예산 금액은 1원 이상이어야 합니다.")
     private int amount;
 
     @Schema(description = "카테고리", example = "1")

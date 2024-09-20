@@ -40,4 +40,11 @@ public class Expense {
     private int amount;
 
     private String memo;
+
+    public void updateExpense(LocalDate expenseDate, String memo, int amount, Long categoryId) {
+        this.expenseAt = expenseDate;
+        this.memo = memo;
+        this.amount = amount;
+        this.categoryId = categoryId;
+    }
 }
