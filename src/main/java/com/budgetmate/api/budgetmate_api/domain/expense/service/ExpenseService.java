@@ -9,7 +9,6 @@ import com.budgetmate.api.budgetmate_api.domain.expense.repository.ExpenseReposi
 import com.budgetmate.api.budgetmate_api.domain.user.entity.User;
 import com.budgetmate.api.budgetmate_api.domain.user.service.UserService;
 import com.budgetmate.api.budgetmate_api.global.exception.CustomException;
-import java.time.LocalDate;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -35,6 +34,12 @@ public class ExpenseService {
 
         expense.updateExpense(dto.getExpenseDate(),dto.getMemo(),dto.getAmount(), dto.getCategoryId());
         expenseRepository.save(expense);
+    }
+
+    public void deleteExpense(Long userId,Long expendId){
+        Expense expense = expenseRepository.findByIdAndUser_Id(expendId, userId)
+            .orElseThrow(() -> new CustomException(ACCESS_DENIED));
+        expenseRepository.delete(expense);
     }
 
     public Expense findById(Long expenseId){

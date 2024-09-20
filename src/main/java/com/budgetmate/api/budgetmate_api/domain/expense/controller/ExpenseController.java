@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -44,5 +45,13 @@ public class ExpenseController {
         expenseService.updateExpense(user.getUserId(),expendId,dto);
 
         return new ResponseEntity<>(CommonResponse.ok("지출 수정 되었습니다.",null),HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{expendId}")
+    public ResponseEntity<?> updateExpense(@AuthenticationPrincipal CustomUserDetails user,
+        @PathVariable Long expendId){
+        expenseService.deleteExpense(user.getUserId(), expendId);
+
+        return new ResponseEntity<>(CommonResponse.ok("지출 삭제 되었습니다.",null),HttpStatus.OK);
     }
 }
