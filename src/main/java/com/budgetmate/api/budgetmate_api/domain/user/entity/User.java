@@ -1,6 +1,7 @@
 package com.budgetmate.api.budgetmate_api.domain.user.entity;
 
 import com.budgetmate.api.budgetmate_api.domain.budget.entity.Budget;
+import com.budgetmate.api.budgetmate_api.domain.expense.entity.Expense;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -42,4 +43,7 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.LAZY)
     private List<Budget> budgets = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.LAZY)
+    private List<Expense> expenses = new ArrayList<>();
 }
