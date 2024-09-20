@@ -30,6 +30,6 @@ public class CategoryBudgetCreateReqeust {
     private int amount;
 
     @Schema(description = "카테고리", example = "1")
-    @NotBlank
+    @NotNull
     private Long categoryId;
 }
