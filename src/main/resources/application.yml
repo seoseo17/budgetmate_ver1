@@ -1,3 +1,7 @@
+server:
+  servlet:
+    context-path: /api
+
 spring:
   application:
     name: budgetmate
@@ -17,7 +21,7 @@ spring:
   jpa:
     open-in-view: false
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
     properties:
       hibernate:
         format_sql: true
@@ -34,6 +38,12 @@ spring:
   devtools:
     restart:
       enabled: true
+
+# JWT 설정
+jwt:
+  secret: 48b1139d703a1d10f9d0f718445fd9ccab85d5169131598f4ac55d913a7e17d7
+  access-token-validate-in-seconds: 3600 # 1시간
+  refresh-token-validate-in-seconds: 604800 # 7일
 
 # logback 설정
 logging:
