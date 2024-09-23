@@ -1,4 +1,4 @@
-package com.budgetmate.api.budgetmate_api.domain.expense.dto;
+package com.budgetmate.api.budgetmate_api.domain.expense.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
@@ -31,6 +31,7 @@ public class ExpenseCreateRequest {
     private LocalDate expenseDate;
 
     @Schema(description = "합계 제외 여부", example = "true")
+    @NotNull
     private boolean excludedSum;
 
 }

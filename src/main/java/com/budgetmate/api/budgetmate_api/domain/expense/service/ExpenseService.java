@@ -3,7 +3,8 @@ package com.budgetmate.api.budgetmate_api.domain.expense.service;
 import static com.budgetmate.api.budgetmate_api.global.error.ErrorCode.ACCESS_DENIED;
 import static com.budgetmate.api.budgetmate_api.global.error.ErrorCode.EXPENSE_NOT_FOUND;
 
-import com.budgetmate.api.budgetmate_api.domain.expense.dto.ExpenseCreateRequest;
+import com.budgetmate.api.budgetmate_api.domain.expense.dto.ExpenseDto;
+import com.budgetmate.api.budgetmate_api.domain.expense.dto.request.ExpenseCreateRequest;
 import com.budgetmate.api.budgetmate_api.domain.expense.entity.Expense;
 import com.budgetmate.api.budgetmate_api.domain.expense.repository.ExpenseRepository;
 import com.budgetmate.api.budgetmate_api.domain.user.entity.User;
@@ -32,7 +33,7 @@ public class ExpenseService {
         Expense expense = expenseRepository.findByIdAndUser_Id(expenseId, userId)
             .orElseThrow(() -> new CustomException(ACCESS_DENIED));
 
-        expense.updateExpense(dto.getExpenseDate(),dto.getMemo(),dto.getAmount(), dto.getCategoryId());
+        expense.updateExpense(dto.getExpenseDate(),dto.getMemo(),dto.getAmount(), dto.getCategoryId(),dto.isExcludedSum());
         expenseRepository.save(expense);
     }
 
@@ -40,6 +41,12 @@ public class ExpenseService {
         Expense expense = expenseRepository.findByIdAndUser_Id(expendId, userId)
             .orElseThrow(() -> new CustomException(ACCESS_DENIED));
         expenseRepository.delete(expense);
+    }
+
+    public ExpenseDto getExpenseDetail(Long userId,Long expendId){
+        Expense expense = findById(expendId);
+        return new ExpenseDto().fromEntity(expense);
+
     }
 
     public Expense findById(Long expenseId){
@@ -54,6 +61,7 @@ public class ExpenseService {
             .expenseAt(dto.getExpenseDate())
             .amount(dto.getAmount())
             .memo(dto.getMemo())
+            .excludedSum(dto.isExcludedSum())
             .build();
     }
 }

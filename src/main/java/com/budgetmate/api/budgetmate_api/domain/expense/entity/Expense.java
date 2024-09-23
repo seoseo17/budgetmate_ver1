@@ -42,10 +42,11 @@ public class Expense {
     private String memo;
 
     private boolean excludedSum = false;
-    public void updateExpense(LocalDate expenseDate, String memo, int amount, Long categoryId) {
+    public void updateExpense(LocalDate expenseDate, String memo, int amount, Long categoryId, boolean excludedSum) {
         this.expenseAt = expenseDate;
         this.memo = memo;
         this.amount = amount;
         this.categoryId = categoryId;
+        this.excludedSum = excludedSum;
     }
 }
