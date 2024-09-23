@@ -41,6 +41,7 @@ public class Expense {
 
     private String memo;
 
+    private boolean excludedSum = false;
     public void updateExpense(LocalDate expenseDate, String memo, int amount, Long categoryId) {
         this.expenseAt = expenseDate;
         this.memo = memo;

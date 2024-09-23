@@ -30,4 +30,7 @@ public class ExpenseCreateRequest {
     @NotNull
     private LocalDate expenseDate;
 
+    @Schema(description = "합계 제외 여부", example = "true")
+    private boolean excludedSum;
+
 }
