@@ -45,6 +45,9 @@ public class ExpenseService {
 
     public ExpenseDto getExpenseDetail(Long userId,Long expendId){
         Expense expense = findById(expendId);
+        if (!isUserExpense(userId,expense)){
+            throw new CustomException(ACCESS_DENIED);햣
+        }
         return new ExpenseDto().fromEntity(expense);
 
     }
@@ -63,5 +66,9 @@ public class ExpenseService {
             .memo(dto.getMemo())
             .excludedSum(dto.isExcludedSum())
             .build();
+    }
+
+    private boolean isUserExpense(Long userId, Expense expense){
+        return expense.getUser().getId().equals(userId);
     }
 }
