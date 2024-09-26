@@ -33,6 +33,14 @@ public class CategoryService {
         return categoryRepository.findById(id).orElseThrow(()->new CustomException(CATEGORY_NOT_FOUND));
     }
 
+    public String findNameById(Long id){
+
+        String categoryName = categoryRepository.findNameById(id);
+        if (categoryName == null) throw new CustomException(CATEGORY_NOT_FOUND);
+
+        return categoryName;
+    }
+
     public Category findByName(String name){
         return categoryRepository.findByName(name).orElseThrow(()->new CustomException(CATEGORY_NOT_FOUND));
     }

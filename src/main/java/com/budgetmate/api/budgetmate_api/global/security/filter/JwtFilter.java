@@ -73,16 +73,14 @@ public class JwtFilter extends OncePerRequestFilter {
             //세션에 사용자 등록
             SecurityContextHolder.getContext().setAuthentication(authToken);
 
-            filterChain.doFilter(request, response);
         } catch (JwtAuthenticationException e) {
             log.info("[ERROR] JWT 인증 실패: {}", e.getMessage());
             request.setAttribute("tokenError",AUTHENTICATION_FAILED);
-            filterChain.doFilter(request, response);
         } catch (Exception e) {
             log.info("[ERROR] 기타 인증 오류 발생: {}", e.getMessage());
-            request.setAttribute("tokenError",COMMON_SYSTEM_ERROR);
-            filterChain.doFilter(request, response);
+            throw new JwtAuthenticationException(ErrorCode.INVALID_TOKEN, e);
         }
+        filterChain.doFilter(request, response);
     }
 }
 

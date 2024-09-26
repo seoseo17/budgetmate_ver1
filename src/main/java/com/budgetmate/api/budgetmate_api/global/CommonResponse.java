@@ -11,12 +11,15 @@ public class CommonResponse<T> {
 
 
     public static <T> CommonResponse<T> ok(T data) {
-        return ok( data);
+        return new CommonResponse<>("Success", data);
     }
 
     public static <T> CommonResponse<T> ok(String message, T data) {
         return new CommonResponse<>(message, data);
     }
 
+    public static CommonResponse<Void> fail(String message){
+        return new CommonResponse<>(message,null);
+    }
 
 }

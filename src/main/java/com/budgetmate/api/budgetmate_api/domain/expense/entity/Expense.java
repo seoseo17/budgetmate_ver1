@@ -37,14 +37,16 @@ public class Expense {
 
     private LocalDate expenseAt;
 
-    private int amount;
+    private long amount;
 
     private String memo;
 
-    public void updateExpense(LocalDate expenseDate, String memo, int amount, Long categoryId) {
+    private boolean excludedSum = false;
+    public void updateExpense(LocalDate expenseDate, String memo, long amount, Long categoryId, boolean excludedSum) {
         this.expenseAt = expenseDate;
         this.memo = memo;
         this.amount = amount;
         this.categoryId = categoryId;
+        this.excludedSum = excludedSum;
     }
 }

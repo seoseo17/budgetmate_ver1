@@ -1,4 +1,4 @@
-package com.budgetmate.api.budgetmate_api.domain.expense.dto;
+package com.budgetmate.api.budgetmate_api.domain.expense.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
@@ -16,7 +16,7 @@ public class ExpenseCreateRequest {
     @Schema(description = "지출 금액", example = "30000")
     @NotNull
     @Min(value = 1, message = "예산 금액은 1원 이상이어야 합니다.")
-    private int amount;
+    private long amount;
 
     @Schema(description = "카테고리", example = "1")
     @NotNull
@@ -29,5 +29,9 @@ public class ExpenseCreateRequest {
     @JsonFormat(shape = Shape.STRING, pattern = "yyyy-MM-dd")
     @NotNull
     private LocalDate expenseDate;
+
+    @Schema(description = "합계 제외 여부", example = "true")
+    @NotNull
+    private boolean excludedSum;
 
 }

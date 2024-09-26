@@ -23,5 +23,5 @@ public class BudgetCreateReqeust {
 
     @Schema(description = "월별 총 예산(원)", example = "100000")
     @NotNull
-    private int totalAmount;
+    private long totalAmount;
 }
