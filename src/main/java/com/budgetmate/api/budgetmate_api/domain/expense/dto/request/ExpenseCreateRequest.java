@@ -16,7 +16,7 @@ public class ExpenseCreateRequest {
     @Schema(description = "지출 금액", example = "30000")
     @NotNull
     @Min(value = 1, message = "예산 금액은 1원 이상이어야 합니다.")
-    private int amount;
+    private long amount;
 
     @Schema(description = "카테고리", example = "1")
     @NotNull

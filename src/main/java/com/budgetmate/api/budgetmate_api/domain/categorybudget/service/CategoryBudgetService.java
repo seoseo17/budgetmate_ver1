@@ -57,7 +57,7 @@ public class CategoryBudgetService {
     }
 
     public void updateBudgetByCategory(Long userId, Long categoryBudgetId, Category category, CategoryBudgetUpdateReqeust dto){
-        int amount = dto.getAmount();
+        long amount = dto.getAmount();
         CategoryBudget currentCategoryBudget = findById(categoryBudgetId);
         Long budgetId = currentCategoryBudget.getBudget().getId();
         Long newCategoryId = category.getId();
@@ -76,7 +76,7 @@ public class CategoryBudgetService {
             categoryBudgetRepository.save(updatedCategoryBudget);
 
             // 기존 카테고리의 예산 조정
-            int difference = Math.max(currentCategoryBudget.getAmount() - amount, 0);
+            long difference = Math.max(currentCategoryBudget.getAmount() - amount, 0);
 
             currentCategoryBudget.setAmount(difference);
             categoryBudgetRepository.save(currentCategoryBudget);

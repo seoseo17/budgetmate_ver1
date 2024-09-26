@@ -38,7 +38,7 @@ public class BudgetService {
     public void recalculateTatolAmount(Long budgetId){
         Budget budget = findById(budgetId);
         List<CategoryBudget> categoryBudgets =categoryBudgetRepository.findAllByBudget_Id(budgetId);
-        int totalAmount = categoryBudgets.stream().mapToInt(CategoryBudget::getAmount).sum();
+        long totalAmount = categoryBudgets.stream().mapToLong(CategoryBudget::getAmount).sum();
         budget.updateTotalAmount(totalAmount);
     }
 

@@ -14,7 +14,7 @@ public class CategoryBudgetUpdateReqeust {
     @Schema(description = "카테고리 별 예산(원)", example = "30000")
     @NotNull
     @Min(value = 50, message = "예산 금액은 50원 이상이어야 합니다.")
-    private int amount;
+    private long amount;
 
     @Schema(description = "카테고리ID", example = "1")
     @NotNull

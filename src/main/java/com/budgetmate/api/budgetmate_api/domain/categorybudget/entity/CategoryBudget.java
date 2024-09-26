@@ -31,7 +31,7 @@ public class CategoryBudget {
         private Long id;
 
         @Column(nullable = false)
-        private int amount;
+        private long amount;
 
         @ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "budget_id", nullable = false)
@@ -41,7 +41,7 @@ public class CategoryBudget {
         @JoinColumn(name = "category_id",nullable = false)
         private Category category;
 
-        public void  updateAmount(int amount){
+        public void  updateAmount(long amount){
                 this.amount += amount;
         }
 

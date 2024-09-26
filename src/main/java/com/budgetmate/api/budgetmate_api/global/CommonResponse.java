@@ -18,5 +18,8 @@ public class CommonResponse<T> {
         return new CommonResponse<>(message, data);
     }
 
+    public static CommonResponse<Void> fail(String message){
+        return new CommonResponse<>(message,null);
+    }
 
 }

@@ -41,7 +41,7 @@ public class Budget {
     @Column(nullable = false)
     private int month;
 
-    private int totalAmount=0;
+    private long totalAmount=0;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
@@ -51,7 +51,7 @@ public class Budget {
     private List<CategoryBudget> categoryBudgets = new ArrayList<>();
 
 
-    public void updateTotalAmount(int totalAmount){
+    public void updateTotalAmount(long totalAmount){
         this.totalAmount = totalAmount;
     }
 

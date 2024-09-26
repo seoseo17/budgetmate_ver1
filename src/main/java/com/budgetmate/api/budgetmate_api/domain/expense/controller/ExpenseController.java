@@ -3,6 +3,8 @@ package com.budgetmate.api.budgetmate_api.domain.expense.controller;
 import com.budgetmate.api.budgetmate_api.domain.category.service.CategoryService;
 import com.budgetmate.api.budgetmate_api.domain.expense.dto.ExpenseDto;
 import com.budgetmate.api.budgetmate_api.domain.expense.dto.request.ExpenseCreateRequest;
+import com.budgetmate.api.budgetmate_api.domain.expense.dto.request.ExpenseListRequest;
+import com.budgetmate.api.budgetmate_api.domain.expense.dto.response.ExpenseListResponse;
 import com.budgetmate.api.budgetmate_api.domain.expense.service.ExpenseService;
 import com.budgetmate.api.budgetmate_api.global.CommonResponse;
 import com.budgetmate.api.budgetmate_api.global.security.userDetails.CustomUserDetails;
@@ -30,6 +32,29 @@ public class ExpenseController {
     private final ExpenseService expenseService;
     private final CategoryService categoryService;
 
+    @GetMapping("/{expendId}")
+    public ResponseEntity<?> getExpenseDetail(@AuthenticationPrincipal CustomUserDetails user,
+        @PathVariable Long expendId
+    ){
+        ExpenseDto dto = expenseService.getExpenseDetail(user.getUserId(), expendId);
+        return new ResponseEntity<>(CommonResponse.ok("조회 되었습니다.",dto),HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity<?> getExpenseList(@AuthenticationPrincipal CustomUserDetails user,
+        @Valid ExpenseListRequest dto){
+
+        ExpenseListResponse response;
+
+        if (dto.getCategoryId() == null){
+            response = expenseService.getExpenseList(user.getUserId(),dto);
+        }else {
+            response = expenseService.getExpenseListByCategory(user.getUserId(),dto);
+        }
+
+        return new ResponseEntity<>(response,HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<?> createExpense(@AuthenticationPrincipal CustomUserDetails user,
         @RequestBody @Valid ExpenseCreateRequest dto){
@@ -55,13 +80,5 @@ public class ExpenseController {
         expenseService.deleteExpense(user.getUserId(), expendId);
 
         return new ResponseEntity<>(CommonResponse.ok("지출 삭제 되었습니다.",null),HttpStatus.OK);
-    }
-
-    @GetMapping("/{expendId}")
-    public ResponseEntity<?> getExpenseDetail(@AuthenticationPrincipal CustomUserDetails user,
-        @PathVariable Long expendId
-         ){
-        ExpenseDto dto = expenseService.getExpenseDetail(user.getUserId(), expendId);
-        return new ResponseEntity(CommonResponse.ok("조회 되었습니다.",dto),HttpStatus.OK);
     }
 }
